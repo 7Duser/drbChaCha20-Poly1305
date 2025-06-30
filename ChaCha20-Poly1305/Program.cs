@@ -46,13 +46,6 @@ public static class Program
 
         (byte[]? tamperedBytes, bool tamperedSuccess) = bChaCha20Poly1305.Decrypt(key, nonce, ciphertext, tag, associatedData);
 
-        if (!tamperedSuccess)
-        {
-            Console.WriteLine($"Returned bytes: {(tamperedBytes == null! ? "null" : "not null")}");
-        }
-        else
-        {
-            Console.WriteLine("Whoops something broke, tampering was not detected");
-        }
+        Console.WriteLine(!tamperedSuccess ? $"Returned bytes: {(tamperedBytes == null! ? "null" : "not null")}" : "Whoops something broke, tampering was not detected");
     }
 }
